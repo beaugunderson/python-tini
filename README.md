@@ -4,6 +4,8 @@ A simple module for loading simple `ini` files.
 
 ### Example
 
+#### settings.py
+
 ```python
 import os
 import sys
@@ -27,8 +29,19 @@ defaults = {
 sys.modules[__name__] = Tini(filenames, defaults=defaults)
 ```
 
+#### foobar.ini
+
+```
+[foobar]
+buzz = false
+```
+
+#### test.py
+
 ```python
 import settings
 
-settings.foobar['baz'] == 'a string'
+assert settings.foobar['baz'] == 'a string'
+assert settings.foobar['buzz'] is False
+assert settings.foobar['baz'] == 123
 ```
