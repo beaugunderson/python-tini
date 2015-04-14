@@ -1,0 +1,8 @@
+*.pyc
+
+MANIFEST
+
+.tox/
+.eggs/
+
+tini.egg-info/
