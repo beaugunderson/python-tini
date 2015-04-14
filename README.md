@@ -1,6 +1,22 @@
 ## tini
 
-A simple module for loading simple `ini` files.
+A simple module for loading `.ini`-style configuration files.
+
+Based on [ConfigParser][configparser] and works in Python 2 and Python 3.
+
+[configparser]: https://docs.python.org/3/library/configparser.html
+
+### Running tests
+
+```bash
+$ py.test
+```
+
+Or, with `tox` (test with multiple Python versions):
+
+```bash
+$ tox
+```
 
 ### Example
 
