@@ -61,10 +61,8 @@ class SimpleConfigParser(configparser.ConfigParser):
     """
 
     def __init__(self, *args, **kwargs):
-        kwargs.update({
-            'interpolation': SimpleInterpolation(),
-            'allow_no_value': True
-        })
+        kwargs.setdefault('allow_no_value', True)
+        kwargs.setdefault('interpolation', SimpleInterpolation())
 
         super(SimpleConfigParser, self).__init__(*args, **kwargs)
 
