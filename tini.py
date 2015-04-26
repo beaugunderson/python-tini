@@ -32,9 +32,9 @@ def coerce_value(value):
     return value
 
 
-class SimpleInterpolation(configparser.Interpolation):
+class CoerceInterpolation(configparser.Interpolation):
     """
-    Strip quotes from strings.
+    Coerce values and strip quotes from strings.
     """
 
     def before_read(self, parser, section, option, value):
@@ -47,6 +47,18 @@ class SimpleInterpolation(configparser.Interpolation):
             return coerced_value.strip('"\'')
 
         return coerced_value
+
+
+class StripQuotesInterpolation(configparser.Interpolation):
+    """
+    Strip quotes from strings.
+    """
+
+    def before_read(self, parser, section, option, value):
+        if not isinstance(value, string_types):
+            return value
+
+        return value.strip('"\'')
 
 
 class SimpleConfigParser(configparser.ConfigParser):
@@ -62,7 +74,7 @@ class SimpleConfigParser(configparser.ConfigParser):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('allow_no_value', True)
-        kwargs.setdefault('interpolation', SimpleInterpolation())
+        kwargs.setdefault('interpolation', CoerceInterpolation())
 
         super(SimpleConfigParser, self).__init__(*args, **kwargs)
 
