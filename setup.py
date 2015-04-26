@@ -12,7 +12,9 @@ setup(
 
     keywords=['config', 'configuration', 'ini'],
 
-    version='1.0',
+    version='1.1.0',
+
+    license='MIT',
 
     py_modules=['tini'],
 
@@ -30,13 +32,12 @@ setup(
 
         'Intended Audience :: Developers',
 
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
 
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Operating System :: MacOS :: MacOS X',
 
-        'Topic :: Software Development :: Testing',
         'Topic :: Software Development :: Libraries',
         'Topic :: Utilities',
 

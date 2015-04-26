@@ -77,14 +77,23 @@ class Tini(object):
     Easily parse simple ini files.
     """
 
-    def __init__(self, filenames, defaults=None):
-        if isinstance(filenames, string_types):
-            filenames = [filenames]
-
+    def __init__(self, filenames=None, f=None, defaults=None, **kwargs):
         self.defaults = defaultdict(dict, **(defaults if defaults else {}))
 
-        self.parser = SimpleConfigParser()
-        self.parser.read(filenames)
+        self.parser = SimpleConfigParser(**kwargs)
+
+        if filenames and f:
+            raise ValueError('filenames and f may not both be specified')
+
+        if filenames:
+            if isinstance(filenames, string_types):
+                filenames = [filenames]
+
+            self.parser.read(filenames)
+        elif f:
+            self.parser.read_file(f)
+        else:
+            raise ValueError('either filenames or f must be specified')
 
         # We do this here instead of in SimpleConfigParser because we want to
         # support defaults that pertain to a specific section.
