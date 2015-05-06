@@ -17,6 +17,21 @@ def assert_test_ini(settings):
     assert settings.test['boolean-false'] is False
 
 
+def test_defaults():
+    """
+    Test that defaults work even if no section is specified in a file.
+    """
+    settings = Tini('./test.ini', defaults={
+        'new_section': {
+            'abc': 'def'
+        }
+    })
+
+    assert_test_ini(settings)
+
+    assert settings.new_section['abc'] == 'def'
+
+
 def test_filenames():
     """
     Test basic argument coercion.

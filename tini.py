@@ -107,10 +107,18 @@ class Tini(object):
 
         # We do this here instead of in SimpleConfigParser because we want to
         # support defaults that pertain to a specific section.
-        self.items = {
-            section: dict(self.defaults[section], **dict(**values))
-            for section, values in dict(self.parser._sections).items()
-        }
+        sections = (list(dict(self.parser._sections).keys()) +
+                    list(self.defaults.keys()))
+
+        self.items = {}
+
+        for section in sections:
+            if section in self.parser._sections:
+                self.items[section] = dict(
+                    self.defaults[section],
+                    **dict(self.parser._sections[section]))
+            else:
+                self.items[section] = self.defaults[section]
 
     def __getattr__(self, name):
         return self.items[name]
