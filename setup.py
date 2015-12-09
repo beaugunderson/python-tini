@@ -20,7 +20,7 @@ setup(
 
     install_requires=[
         'configparser >= 3.5.0b2',
-        'six >= 1.9.0',
+        'six >= 1.10.0',
     ],
 
     setup_requires=[
