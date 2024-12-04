@@ -20,7 +20,6 @@ setup(
         "configparser >= 3.5.0b2",
         "six >= 1.10.0",
     ],
-    setup_requires=["setuptools-markdown"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
